@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
+
 const {default :expect}=require("expect");
-
 const todoList = require("../todo");
-
 const {all,markAsComplete,add,overdue,dueToday,dueLater} = todoList();
+
 
 describe("TodoList Test Suite",() =>{
     beforeAll(() =>{
@@ -10,11 +11,9 @@ describe("TodoList Test Suite",() =>{
         const tomorrow = new Date(new Date().setDate(today.getDate()+1));
         expect(all.length).toBe(0);
         add(
-            
-          {
+            {
                 title:"File taxes",
-                dueDate:tomorrow.toISOString().slice(0,10) ,
-            
+                dueDate:tomorrow.toISOString().slice(0,10),
                 completed: false,
             }
         );
@@ -34,12 +33,11 @@ describe("TodoList Test Suite",() =>{
         markAsComplete(0);
         expect(all[0].completed).toBe(true);
     });
-  
+    
     test("Should retrive overdue items", () =>{
         const today=new Date();
         const yesterday = new Date(new Date().setDate(today.getDate()-1));
         const overdueCount=overdue().length;
-      
         add({
                 title:"Submit assignment",
                 dueDate:yesterday.toISOString().slice(0,10),
@@ -57,7 +55,6 @@ describe("TodoList Test Suite",() =>{
             });
         expect(dueToday().length).toBe(dueTodayCount+1);
     });
-  
     test("Should retrive due later items", () =>{
         const today=new Date();
         const tomorrow = new Date(new Date().setDate(today.getDate()+1));
